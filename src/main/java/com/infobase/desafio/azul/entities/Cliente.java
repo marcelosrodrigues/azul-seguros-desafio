@@ -34,6 +34,11 @@ public class Cliente implements Serializable {
     @NonNull
     private String email;
 
+    @Column(name = "cpf", unique = true, nullable = false)
+    @ApiModelProperty(value = "cpf", dataType = "String", required = true)
+    @NonNull
+    private String cpf;
+
     @Embedded
     @ApiModelProperty(value = "endereco", required = true)
     @NonNull

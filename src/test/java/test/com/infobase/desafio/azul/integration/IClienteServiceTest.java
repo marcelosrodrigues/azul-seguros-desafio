@@ -37,7 +37,7 @@ public class IClienteServiceTest {
     @Test
     public void shouldAdd() throws IOException {
 
-        var cliente = new Cliente("Marcelo" , "teste@teste.com",
+        var cliente = new Cliente("Marcelo" , "teste@teste.com", "123456789",
                 new Endereco("950", "APTO 403 BLOCO 2", "22770235"));
 
         Response response = service.add(cliente);
@@ -49,7 +49,7 @@ public class IClienteServiceTest {
 
     @Test
     public void shouldntAddWithSameEmail() {
-        var cliente = new Cliente("Marcelo" , "could@teste.com",
+        var cliente = new Cliente("Marcelo" , "could@teste.com", "123456789",
                 new Endereco("950", "APTO 403 BLOCO 2", "22770235"));
 
         var response = service.add(cliente);
@@ -64,7 +64,7 @@ public class IClienteServiceTest {
 
     @Test
     public void shouldByEmail() throws IOException {
-        var cliente = new Cliente("Marcelo" , "founded@teste.com",
+        var cliente = new Cliente("Marcelo" , "founded@teste.com", "123456789",
                 new Endereco("950", "APTO 403 BLOCO 2", "22770235"));
 
         Response response = service.add(cliente);

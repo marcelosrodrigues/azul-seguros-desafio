@@ -82,4 +82,24 @@ public class ClienteRepository {
 
         return cliente;
     }
+
+    public Cliente findByEmailOrCPF(final String email, final String cpf) {
+
+        log.info("pesquisando cliente pelo cpf e email");
+
+        if( log.isDebugEnabled() ){
+            log.debug("tentando pesquisa 1 cliente pelo email {} ou cpf {}", email, cpf);
+        }
+
+        var cliente = this.entityManager.createQuery("SELECT c FROM Cliente where c.email = :email or c.cpf = :cpf", Cliente.class)
+                    .setParameter("email" , email)
+                    .setParameter("cpf", cpf)
+                    .getSingleResult();
+
+        if( log.isDebugEnabled() ){
+            log.debug("cliente encontrado {}", cliente);
+        }
+
+        return cliente;
+    }
 }

@@ -123,7 +123,7 @@ public class ClienteServiceBean {
             log.debug("verificando se já existe na base algum cliente com o email {}", cliente.getEmail());
         }
 
-        if( repository.findByEmail(cliente.getEmail()) == null ) {
+        if( repository.findByEmailOrCPF(cliente.getEmail(), cliente.getCpf()) == null) {
             log.info("cliente novo");
             var endereco = cepUtils.findByCEP(cliente.getEndereco().getCep());
             if( endereco != null ) {

@@ -129,11 +129,13 @@ public class ClienteServiceTest {
     }
 
     @Test
-    public void shouldntSaveEmailExisted() {
+    public void shouldntSaveWithSameCPF() {
         final Cliente cliente = mock(Cliente.class);
 
         given(cliente.getEmail()).willReturn("teste@teste.com");
-        given(repository.findByEmail(any(String.class))).willReturn(cliente);
+        given(cliente.getCpf()).willReturn("123456789");
+
+        given(repository.findByEmailOrCPF(any(String.class),any(String.class))).willReturn(cliente);
 
         final Response response = toTest.add(cliente);
         assertNotNull(response);

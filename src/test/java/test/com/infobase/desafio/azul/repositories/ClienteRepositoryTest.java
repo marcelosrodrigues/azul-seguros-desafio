@@ -42,7 +42,7 @@ public class ClienteRepositoryTest {
     @Test
     public void shouldSave() {
 
-        final Cliente cliente = new Cliente("teste" , "teste@teste.com",
+        final Cliente cliente = new Cliente("teste" , "teste@teste.com", "123456789",
                 new Endereco("rua", "numero", "complemento",
                         "bairro", "cep", "estado", "cidade", "ibge", "gia", "ddd", "siafi"));
 
@@ -54,7 +54,7 @@ public class ClienteRepositoryTest {
     @Test
     public void findById() {
 
-        final Cliente cliente = new Cliente("teste" , "teste@teste.com",
+        final Cliente cliente = new Cliente("teste" , "teste@teste.com", "123456789",
                 new Endereco("rua", "numero", "complemento",
                         "bairro", "cep", "estado", "cidade", "ibge", "gia", "ddd", "siafi"));
 
@@ -77,13 +77,28 @@ public class ClienteRepositoryTest {
     @Test
     public void shouldFoundByEmail() {
 
-        final Cliente cliente = new Cliente("teste" , "teste@teste.com",
+        final Cliente cliente = new Cliente("teste" , "teste@teste.com", "123456789",
                 new Endereco("rua", "numero", "complemento",
                         "bairro", "cep", "estado", "cidade", "ibge", "gia", "ddd", "siafi"));
 
         this.entityManager.persist(cliente);
 
         final Cliente saved = this.repository.findByEmail(cliente.getEmail());
+        assertNotNull(saved);
+
+        assertEquals(cliente, saved);
+    }
+
+    @Test
+    public void shouldFoundByEmailORCPF() {
+
+        final Cliente cliente = new Cliente("teste" , "teste@teste.com", "123456789",
+                new Endereco("rua", "numero", "complemento",
+                        "bairro", "cep", "estado", "cidade", "ibge", "gia", "ddd", "siafi"));
+
+        this.entityManager.persist(cliente);
+
+        final Cliente saved = this.repository.findByEmailOrCPF(cliente.getEmail(),cliente.getCpf());
         assertNotNull(saved);
 
         assertEquals(cliente, saved);
@@ -99,7 +114,7 @@ public class ClienteRepositoryTest {
     public void listAll() {
 
         for( int i = 0 ; i < 10 ; i++) {
-            final Cliente cliente = new Cliente("teste" , format("teste%s@teste.com", i),
+            final Cliente cliente = new Cliente("teste" , format("teste%s@teste.com", i), format("12345678%s",i),
                     new Endereco("rua", "numero", "complemento",
                             "bairro", "cep", "estado", "cidade", "ibge", "gia", "ddd", "siafi"));
 
