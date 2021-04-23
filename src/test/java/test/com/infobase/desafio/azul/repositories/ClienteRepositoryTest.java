@@ -26,7 +26,7 @@ public class ClienteRepositoryTest {
 
     @BeforeEach
     public void beforeEach() throws Exception {
-        this.entityManager = Persistence.createEntityManagerFactory("desafio").createEntityManager();
+        this.entityManager = Persistence.createEntityManagerFactory("desafio-teste").createEntityManager();
         this.transaction = entityManager.getTransaction();
         transaction.begin();
         Field entityManager = repository.getClass().getDeclaredField("entityManager");

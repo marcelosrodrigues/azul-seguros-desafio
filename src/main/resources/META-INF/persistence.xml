@@ -5,8 +5,9 @@
     <persistence-unit name="desafio" transaction-type="JTA">
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>com.infobase.desafio.azul.entities.Cliente</class>
         <jta-data-source>java:jboss/datasources/azul-seguros/desafioDS</jta-data-source>
+        <class>com.infobase.desafio.azul.entities.Cliente</class>
+
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.show_sql" value="true"/>

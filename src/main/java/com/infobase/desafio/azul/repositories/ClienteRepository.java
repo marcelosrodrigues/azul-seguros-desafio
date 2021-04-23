@@ -91,7 +91,7 @@ public class ClienteRepository {
             log.debug("tentando pesquisa 1 cliente pelo email {} ou cpf {}", email, cpf);
         }
 
-        var cliente = this.entityManager.createQuery("SELECT c FROM Cliente where c.email = :email or c.cpf = :cpf", Cliente.class)
+        var cliente = this.entityManager.createQuery("SELECT c FROM Cliente c where c.email = :email or c.cpf = :cpf", Cliente.class)
                     .setParameter("email" , email)
                     .setParameter("cpf", cpf)
                     .getSingleResult();
