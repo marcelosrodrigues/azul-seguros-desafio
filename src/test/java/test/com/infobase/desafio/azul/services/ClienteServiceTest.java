@@ -86,11 +86,12 @@ public class ClienteServiceTest {
 
     @Test
     public void shouldSaveCliente() {
-        final Cliente cliente = mock(Cliente.class);
-        final Endereco endereco = mock(Endereco.class);
+        final Cliente cliente = mock(Cliente.class, "cliente");
+        final Endereco endereco = mock(Endereco.class, "endereco");
 
         given(cliente.getEmail()).willReturn("teste@teste.com");
-        given(repository.findByEmail(any(String.class))).willReturn(null);
+        given(cliente.getCpf()).willReturn("123456789");
+        given(repository.findByEmailOrCPF(any(String.class),any(String.class))).willReturn(null);
 
         given(endereco.getCep()).willReturn("teste");
 
@@ -113,7 +114,8 @@ public class ClienteServiceTest {
         final Endereco endereco = mock(Endereco.class);
 
         given(cliente.getEmail()).willReturn("teste@teste.com");
-        given(repository.findByEmail(any(String.class))).willReturn(null);
+        given(cliente.getCpf()).willReturn("123456789");
+        given(repository.findByEmailOrCPF(any(String.class),any(String.class))).willReturn(null);
 
         given(endereco.getCep()).willReturn("teste");
 

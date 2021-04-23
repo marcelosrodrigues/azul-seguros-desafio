@@ -31,7 +31,7 @@ public class ClienteServiceBean {
     @Inject
     private ClienteRepository repository;
 
-    private final ViaCepUtils cepUtils = new ViaCepUtils();
+    private ViaCepUtils cepUtils = new ViaCepUtils();
 
     
     @ApiOperation(value = "Busca clientes por email", produces = MediaType.APPLICATION_JSON)
