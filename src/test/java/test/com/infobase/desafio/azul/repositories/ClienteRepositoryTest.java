@@ -105,6 +105,18 @@ public class ClienteRepositoryTest {
     }
 
     @Test
+    public void shouldntFoundByEmailORCPF() {
+
+        final Cliente cliente = new Cliente("teste" , "teste@teste.com", "123456789",
+                new Endereco("rua", "numero", "complemento",
+                        "bairro", "cep", "estado", "cidade", "ibge", "gia", "ddd", "siafi"));
+
+        final Cliente saved = this.repository.findByEmailOrCPF(cliente.getEmail(),cliente.getCpf());
+        assertNull(saved);
+
+    }
+
+    @Test
     public void shouldNotFoundByEmail() {
         final Cliente saved = this.repository.findByEmail("");
         assertNull(saved);
@@ -125,5 +137,7 @@ public class ClienteRepositoryTest {
         assertNotNull(clientes);
 
     }
+
+
 
 }

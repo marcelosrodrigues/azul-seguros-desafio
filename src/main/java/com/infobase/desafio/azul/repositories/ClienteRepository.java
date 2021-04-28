@@ -87,19 +87,24 @@ public class ClienteRepository {
 
         log.info("pesquisando cliente pelo cpf e email");
 
-        if( log.isDebugEnabled() ){
-            log.debug("tentando pesquisa 1 cliente pelo email {} ou cpf {}", email, cpf);
-        }
+        try {
+            if (log.isDebugEnabled()) {
+                log.debug("tentando pesquisa 1 cliente pelo email {} ou cpf {}", email, cpf);
+            }
 
-        var cliente = this.entityManager.createQuery("SELECT c FROM Cliente c where c.email = :email or c.cpf = :cpf", Cliente.class)
-                    .setParameter("email" , email)
+            var cliente = this.entityManager.createQuery("SELECT c FROM Cliente c where c.email = :email or c.cpf = :cpf", Cliente.class)
+                    .setParameter("email", email)
                     .setParameter("cpf", cpf)
                     .getSingleResult();
 
-        if( log.isDebugEnabled() ){
-            log.debug("cliente encontrado {}", cliente);
-        }
+            if (log.isDebugEnabled()) {
+                log.debug("cliente encontrado {}", cliente);
+            }
 
-        return cliente;
+            return cliente;
+        }catch( NoResultException e) {
+            log.debug("não encontramos nenhum cliente com o cpf {} ou o email {} informado", cpf , email);
+            return null;
+        }
     }
 }
